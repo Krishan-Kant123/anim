@@ -1,0 +1,30 @@
+@import "../../../mixins.scss";
+.upcoming{
+    color: white;
+    display: flex;
+    align-items: center;
+
+    flex-direction: column;
+    img{
+        width: 230px;
+        height: 320px;
+        border-radius: 10px;
+    }
+    .title{
+font-size: medium;
+margin-top: 10px;
+    }
+    .schedule{
+        margin-bottom: 5px;
+        font-size: 1.6em;
+        
+    }
+    .center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+   .time{
+    color: grey;
+   }
+}

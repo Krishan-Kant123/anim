@@ -1,0 +1,16 @@
+@import "../../mixins.scss";
+.genres {
+    display: flex;
+    gap: 5px;
+    .genre {
+        background-color: var(--pink);
+        padding: 3px 5px;
+        font-size: 10px;
+        border-radius: 4px;
+        color: white;
+        white-space: nowrap;
+        @include sm{
+            font-size: 12px;
+        }
+    }
+}
