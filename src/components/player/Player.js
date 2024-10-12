@@ -44,25 +44,26 @@ const VideoPlayer = ({fet}) => {
     return playlist;
   };
   // let link="https://stream-akamai.castr.com/5b9352dbda7b8c769937e459/live_2361c920455111ea85db6911fe397b9e/index.fmp4.m3u8"
-  useEffect(() => {
-   let liveURL = createM3U8Playlist(fet);
-console.log(liveURL)
-    // Convert the playlist string to a Blob
-    let blob = new Blob([liveURL], { type: 'application/x-mpegURL' });
-    const url = URL.createObjectURL(blob);
-    setM3u8BlobUrl(url);
-    // setPlayer(null)
 
-    return () => {
-      if (m3u8BlobUrl) {
-        URL.revokeObjectURL(m3u8BlobUrl);
-      }
-    };
-  }, [fet]);
+//   useEffect(() => {
+//    let liveURL = createM3U8Playlist(fet);
+// console.log(liveURL)
+//     // Convert the playlist string to a Blob
+//     let blob = new Blob([liveURL], { type: 'application/x-mpegURL' });
+//     const url = URL.createObjectURL(blob);
+//     setM3u8BlobUrl(url);
+//     // setPlayer(null)
+
+//     return () => {
+//       if (m3u8BlobUrl) {
+//         URL.revokeObjectURL(m3u8BlobUrl);
+//       }
+//     };
+//   }, [fet]);
 
   useEffect(() => {
     console.log(m3u8BlobUrl)
-    if (videoRef.current && m3u8BlobUrl && !player) {
+    if (videoRef.current &&  !player) {
       let p = videojs(videoRef.current, {
         autoplay: false,
         preload: "auto",
@@ -70,7 +71,7 @@ console.log(liveURL)
         responsive: true,
         fluid: true,
         sources: [{
-          src: m3u8BlobUrl,
+          src: fet.stream.multi.main.url,
           type: "application/x-mpegURL",
         }],
         controlBar: {
@@ -92,9 +93,9 @@ console.log(liveURL)
       };
     }
     else if(player){
-      player.src({ src: m3u8BlobUrl, type: "application/x-mpegURL" });
+      player.src({ src: fet.stream.multi.main.url, type: "application/x-mpegURL" });
     }
-  }, [m3u8BlobUrl]);
+  }, [fet]);
 
   return (
     <div data-vjs-player>

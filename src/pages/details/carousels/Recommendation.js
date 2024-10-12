@@ -15,12 +15,12 @@ const Recommendation = ({ data}) => {
       <ContentWrapper>
     <div className="carouselTitle">Recommendations</div>
     <div className="content">
-    {data?.recommendations?.map((item,i)=>{
+    {data?.recommendations?.nodes.map((item,i)=>{
         return(
 
             <MovieCard
           key={i}
-          data={item}
+          data={item.mediaRecommendation}
           
       />
         )

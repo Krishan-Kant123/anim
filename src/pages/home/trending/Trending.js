@@ -17,7 +17,7 @@ const Trending = () => {
 
 const fetchtrend =()=>{
     if(trending[1]=="hii"){
-        fetch('https://for-me-self.vercel.app/trending')
+        fetch('https://random-plum-tau.vercel.app/trending')
         .then(response => response.json())
         .then(response => {
             setdata(response)
@@ -67,7 +67,7 @@ fetchtrend()
                 <span className="carouselTitle">Trending Airs...</span>
                 {/* <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange} /> */}
             </ContentWrapper>
-            { <Carousel data={data?.results} 
+            { <Carousel data={data?.data?.Page?.media} 
             // loading={loading} 
 
             /> }

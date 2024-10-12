@@ -26,18 +26,18 @@ const Cast = ({data}) => {
                 <div className="sectionHeading">Voice Actors</div>
                 {data!=undefined ? (
                     <div className="listItems">
-                        {data.characters?.map((item) => {
-                            let imgUrl = item.voiceActors[0]?.image
-                                ? item.voiceActors[0]?.image
+                        {data.characterPreview?.edges?.map((item) => {
+                            let imgUrl = item.voiceActors[0]?.image?.large
+                                ? item.voiceActors[0]?.image?.large
                                 : avatar;
                             return (
                                 <div key={item.id} className="listItem">
                                     <div className="profileImg">
                                         <Img src={imgUrl} />
                                     </div>
-                                    <div className="name">{item.voiceActors[0]?.name.full}</div>
+                                    <div className="name">{item.voiceActors[0]?.name.userPreferred}</div>
                                     <div className="character">
-                                        {item.name.first } ({item.role})
+                                        {item.node.name.userPreferred } ({item.role})
                                     </div>
                                 </div>
                             );

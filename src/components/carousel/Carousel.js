@@ -63,8 +63,8 @@ const Carousel = ({ data,title }) => {
                     <div className="carouselItems" ref={carouselContainer}>
                         {data?.map((item,i) => {
                             if(item.type==="MANGA" || item.type==="ADAPTATION" || item.type=="NOVEL") return;
-                            const posterUrl = item.image
-                                ? item.image
+                            const posterUrl = item.coverImage.extraLarge
+                                ? item.coverImage["extraLarge"]
                                 : PosterFallback;
                             return (
                                 <div
@@ -82,7 +82,7 @@ const Carousel = ({ data,title }) => {
                                         <Img src={posterUrl} />
 
                                         <CircleRating
-                                            rating={(item.rating/10).toFixed(1)}
+                                            rating={(item.averageScore/10).toFixed(1)}
                                         />
                                         <Genres
                                             data={item.genres?.slice(0, 2)}
@@ -93,9 +93,9 @@ const Carousel = ({ data,title }) => {
                                             {item.title['english'] || item.title['romaji']}
                                         </span>
                                       
-                                        {item.totalEpisodes?(
+                                        {item.episodes?(
                                             <span className="date">
-                                            Episodes : {item.totalEpisodes}
+                                            Episodes : {item.episodes}
                                             </span>
                                         ):(  item.episodeNumber && <span className="date">
                                             Episode No. : {item.episodeNumber}

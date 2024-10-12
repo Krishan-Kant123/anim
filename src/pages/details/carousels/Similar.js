@@ -14,7 +14,7 @@ const Similar = ({data}) => {
       
         <Carousel
             title="Related"
-            data={data?.relations}
+            data={data?.relations?.nodes}
           
         />
         </>

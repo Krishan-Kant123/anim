@@ -19,11 +19,11 @@ const SearchResult = () => {
   
     const fetchInitialData = () => {
         setLoading(true);
-        fetch(`https://for-me-self.vercel.app/search/${query}/${pageNum}`)
+        fetch(`https://random-plum-tau.vercel.app/search/${query}/${pageNum}`)
         .then(res => res.json())
             .then(res=>{
-                setData(res.results);
-                setnext(res.hasNextPage)
+                setData(res.data.Page.media);
+                setnext(res.data.Page.pageInfo.hasNextPage)
                 console.log(res)
                 setPageNum((prev) => prev + 1);
                 setLoading(false);
@@ -35,7 +35,7 @@ const SearchResult = () => {
     const fetchNextPageData = () => {
         if(next){
 
-            fetch(`https://for-me-self.vercel.app/search/${query}/${pageNum}`)
+            fetch(`https://random-plum-tau.vercel.app/search/${query}/${pageNum}`)
             .then(res => res.json())
             .then(res => {
                 // if (data?.length>0) {
@@ -48,9 +48,9 @@ const SearchResult = () => {
                     //     setData(res.results);
                     // }
                     
-                    setData([...data,...res.results]);
-                        console.log([...data,...res.results])
-                        setnext(res.hasNextPage)
+                    setData([...data,...res.data.Page.media]);
+                        console.log([...data,...res.data.Page.media])
+                        setnext(res.data.Page.pageInfo.hasNextPage)
                 
                         setPageNum((prev) => prev + 1);
                     }
@@ -88,6 +88,7 @@ const SearchResult = () => {
                             >
                                 {data?.map((item, index) => {
                                     {/* if (item.media_type === "person") return; */}
+                                    if(item.type==="MANGA" || item.type==="ADAPTATION" || item.type=="NOVEL") return;
                                     return (
                                         <MovieCard
                                             key={index}

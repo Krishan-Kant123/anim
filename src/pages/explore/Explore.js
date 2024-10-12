@@ -42,11 +42,11 @@ const Explore = () => {
         if(mediaType==="popular"){
 
             fetch(
-                `https://for-me-self.vercel.app/popular/${pageNum}`,
+                `https://random-plum-tau.vercel.app/popular/${pageNum}`,
           filters
       ).then(res => res.json()).then((res) => {
-        setData(res.results);
-        setnext(res.hasNextPage)
+        setData(res.data.Page.media);
+        setnext(res.data.Page.pageInfo.hasNextPage)
         console.log(res)
         setPageNum((prev) => prev + 1);
         setLoading(false);
@@ -55,11 +55,11 @@ const Explore = () => {
      else{
         
         fetch(
-            `https://for-me-self.vercel.app/trending/${pageNum}/TV `,
+            `https://random-plum-tau.vercel.app/trending/${pageNum}/TV `,
       filters
   ).then(res => res.json()).then((res) => {
-    setData(res.results);
-    setnext(res.hasNextPage)
+    setData(res.data.Page.media);
+    setnext(res.data.Page.pageInfo.hasNextPage)
     console.log(res)
     setPageNum((prev) => prev + 1);
     setLoading(false);
@@ -71,7 +71,7 @@ const Explore = () => {
         if(mediaType==="popular"){
 
             fetch(
-                `https://for-me-self.vercel.app/popular/${pageNum}`,
+                `https://random-plum-tau.vercel.app/popular/${pageNum}`,
             filters
         ).then(res => res.json())
         .then(res => {
@@ -85,9 +85,9 @@ const Explore = () => {
                 //     setData(res.results);
                 // }
                 
-                setData([...data,...res.results]);
-                    console.log([...data,...res.results])
-                    setnext(res.hasNextPage)
+                setData([...data,...res.data.Page.media]);
+                    console.log([...data,...res.data.Page.media])
+                    setnext(res.data.Page.pageInfo.hasNextPage)
                     
                     setPageNum((prev) => prev + 1);
                 }
@@ -97,7 +97,7 @@ const Explore = () => {
             else{
                 
             fetch(
-                `https://for-me-self.vercel.app/trending/${pageNum}/TV`,
+                `https://random-plum-tau.vercel.app/trending/${pageNum}/TV`,
             filters
         ).then(res => res.json())
         .then(res => {
@@ -111,9 +111,9 @@ const Explore = () => {
                 //     setData(res.results);
                 // }
                 
-                setData([...data,...res.results]);
-                    console.log([...data,...res.results])
-                    setnext(res.hasNextPage)
+                setData([...data,...res.data.Page.media]);
+                    console.log([...data,...res.data.Page.media])
+                    setnext(res.data.Page.pageInfo.hasNextPage)
                     
                     setPageNum((prev) => prev + 1);
                 }

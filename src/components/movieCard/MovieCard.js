@@ -12,8 +12,8 @@ import PosterFallback from "../../assets/no-poster.png";
 const MovieCard = ({ data, fromSearch}) => {
   
     const navigate = useNavigate();
-    const posterUrl = data.image
-    ? data.image
+    const posterUrl = data.coverImage?.extraLarge
+    ? data.coverImage?.extraLarge
     : PosterFallback;
     return (
         <div
@@ -26,7 +26,7 @@ const MovieCard = ({ data, fromSearch}) => {
                 <Img className="posterImg" src={posterUrl} />
                 { (
                     <React.Fragment>
-                        <CircleRating rating={(data.rating/10).toFixed(1)} />
+                        <CircleRating rating={(data.averageScore/10).toFixed(1)} />
                         <Genres data={data?.genres?.slice(0, 2)} />
                     </React.Fragment>
                 )}

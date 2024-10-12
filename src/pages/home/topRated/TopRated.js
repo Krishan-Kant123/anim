@@ -16,7 +16,7 @@ const TopRated = () => {
 
    const fetchlatest =()=>{
     if(latest[1]=="hii"){
-        fetch('https://for-me-self.vercel.app/trending/1/MOVIE')
+        fetch('https://random-plum-tau.vercel.app/trending/1/MOVIE')
         .then(response => response.json())
         .then(response => {
             setdata(response)
@@ -62,7 +62,7 @@ fetchlatest()
              
             </ContentWrapper>
             <Carousel
-                data={data?.results}
+                data={data?.data?.Page?.media}
               
             />
         </div>

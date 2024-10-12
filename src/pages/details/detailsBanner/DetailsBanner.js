@@ -39,6 +39,7 @@ const DetailsBanner = ({ data }) => {
     // let start=`${data.startDate['year']}-${data.startDate['month']}-${data.startDate['day']}`;
 
     const navigate = useNavigate();
+    const imge=data?.coverImage["extraLarge"]?data.coverImage['extraLarge']:data?.coverImage['medium'];
 
     return (
         <div className="detailsBanner">
@@ -47,17 +48,17 @@ const DetailsBanner = ({ data }) => {
                     { (
                         <React.Fragment>
                             <div className="backdrop-img">
-                                <Img src={data.cover} />
+                                <Img src={data.bannerImage} />
                             </div>
                             <div className="opacity-layer"></div>
                             <ContentWrapper>
                                 <div className="content">
                                     <div className="left">
-                                        {data.image ? (
+                                        {data.coverImage ? (
                                             <Img
                                                 className="posterImg"
                                                 src={
-                                                    data.image
+                                                   imge
                                                 }
                                             />
                                         ) : (
@@ -80,7 +81,7 @@ const DetailsBanner = ({ data }) => {
 
                                         <div className="row">
                                             <CircleRating
-                                                rating={(data.rating/10).toFixed(
+                                                rating={(data.averageScore/10).toFixed(
                                                     1
                                                 )}
                                             />
@@ -152,10 +153,10 @@ const DetailsBanner = ({ data }) => {
                                                      Studios:{" "}
                                                 </span>
                                                 <span className="text">
-                                                    {data.studios?.map((d, i) => (
+                                                    {data.studios?.nodes.map((d, i) => (
                                                         <span key={i}>
-                                                            {d}
-                                                            {data.studios.length -
+                                                            {d.name}
+                                                            {data.studios.nodes.length -
                                                                 1 !==
                                                                 i && ", "}
                                                         </span>

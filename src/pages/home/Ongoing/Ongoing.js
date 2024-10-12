@@ -16,7 +16,7 @@ const Ongoing = () => {
 
    const fetchlatest =()=>{
     if(ongoing[1]=="hii"){
-        fetch('https://for-me-self.vercel.app/ongoing/1')
+        fetch('https://random-plum-tau.vercel.app/ongoing/1')
         .then(response => response.json())
         .then(response => {
             setdata(response)
@@ -62,7 +62,7 @@ fetchlatest()
              
             </ContentWrapper>
             <Carousel
-                data={data?.results}
+                data={data?.data?.Page?.media}
               
             />
         </div>

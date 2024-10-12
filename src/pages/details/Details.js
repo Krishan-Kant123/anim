@@ -26,21 +26,21 @@ const Details = () => {
   useEffect(()=>{
     setdata()
 
-    fetch(`https://for-me-self.vercel.app/detail/${id}/${dub}`)
+    fetch(`https://random-plum-tau.vercel.app/detail/${id}/${dub}`)
     .then(response => response.json())
     .then(response => {
-      setdata(response)
+      setdata(response.data.Media)
       console.log(response)
-      dispatch(getData(response));
+      dispatch(getData(response.data.Media));
     })
     .catch(err => console.error(err));
 
-    fetch(`https://for-me-self.vercel.app/detail/${id}/${true}`)
+    fetch(`https://random-plum-tau.vercel.app/detail/${id}/${true}`)
     .then(response => response.json())
     .then(response => {
-      setdubdata(response)
+      setdubdata(response.data.Media)
       console.log(response)
-      dispatch(getdubData(response));
+      dispatch(getdubData(response.data.Media));
     })
     .catch(err => console.error(err));
 

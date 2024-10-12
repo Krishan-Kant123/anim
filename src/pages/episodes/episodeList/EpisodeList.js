@@ -18,19 +18,18 @@ const EpisodeList = ({data,dubdata}) => {
   const[m,setm]=useState("")
 
 
-  const g=(str,p,no,i)=>{  
-    setep(no)
+  const g=(str,p,i)=>{ 
+   setep(i)
 
-
-  fetch(`https://for-me-self.vercel.app/watch/${str}`)
+  fetch(`https://random-plum-tau.vercel.app/watch/${str}`)
   .then(res => res.json())
   .then(res => {
  
-    setm(res.sources)
+    setm(res)
       // console.log(m)
-    console.log(m)
+    console.log(res)
     // setlink(res.sources)
-    setname(res.sources)
+    setname(res)
 
 
 
@@ -89,14 +88,11 @@ const EpisodeList = ({data,dubdata}) => {
     setep(no)
   if(p=="sub"){
 
-    // b=`https://animeflix.live/watch/${str}/`;
-    // setname(b)
+
     console.log(b)
   }
   else if(p=="dub"){
-    // str=str.slice(0,str.indexOf("-episode"))+"-dub"+str.slice(str.indexOf("-episode"),str.length);
-    // b=`https://animeflix.live/watch/${str}/`;
-    // setname(b)
+
     setlang("dub")
     
     console.log(b)
@@ -114,6 +110,7 @@ const EpisodeList = ({data,dubdata}) => {
     else{
   setla(data);
 }
+
 setlang(v);
 
     // btn.forEach(ik => {
@@ -162,26 +159,26 @@ setlang(v);
     <div className="episodeList">
     <div className='title'>{data?.type} * {data?.title["english"]?data?.title["english"]:data?.title["romaji"]}</div>
       <div className="backdrop-img">
-            <Img src={data.cover} />
+            <Img src={data.bannerImage} />
       </div>
       <div className="opacity-layer"></div>
   <div className='flex'>
 
         <div className='episodeno'>
         {/* <div className='scrolfor'> */}
-<div className='eplength'>Episodes : {la?.episodes.length}</div>
-            {la?.episodes?(
-                la?.episodes.map((item,i)=>{
+<div className='eplength'>Episodes : {la?.totalepisodes.length}</div>
+            {la?.totalepisodes?(
+                la?.totalepisodes.map((item,i)=>{
                     return(
                         <>
-<div className='individual' key={i} onClick={()=>{g(item.id,la,item.number,i)}}>
+<div className='individual' key={i} onClick={()=>{g(item.id,la,la.totalepisodes.length-i)}}>
 <div className='im'>
 
-<img src={item.image} className="imgeep"/>
+<img src={la?.coverImage?.extraLarge} className="imgeep"/>
 </div>
 <div className='titleep'>
 
-    <span className='epno'>{item.number}&nbsp;</span>
+    <span className='epno'>{la.totalepisodes.length-i}&nbsp;</span>
     <span className='eptitle'>: {item.title?item.title:item.description}</span>
 </div>
 </div>
@@ -229,7 +226,7 @@ setlang(v);
         </div>
         <div className='under'>
 
-        <div className='ep'>Current Episode : {ep} ({lang})</div>
+        <div className='ep'>Current Episode : {ep} => ({lang})</div>
         <div className='lang'>
 <span className='btn sub btnact' onClick={()=>{lan("sub")}}>SUB</span>
 <span className='btn dub' onClick={()=>{lan("dub")}}>DUB</span>

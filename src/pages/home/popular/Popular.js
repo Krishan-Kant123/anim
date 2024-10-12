@@ -19,7 +19,7 @@ const Popular = () => {
     const fetchpop =()=>{
         setTimeout(()=>{
             if(popular[1]=="hii"){
-                fetch('https://for-me-self.vercel.app/popular/1')
+                fetch('https://random-plum-tau.vercel.app/popular/1')
                 .then(response => response.json())
                 .then(response => {
                     setdata(response)
@@ -57,7 +57,7 @@ const Popular = () => {
              
             </ContentWrapper>
             <Carousel
-                data={data?.results}
+                data={data?.data?.Page?.media}
                 // loading={loading}
                
             />
